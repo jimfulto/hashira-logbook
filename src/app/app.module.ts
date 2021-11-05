@@ -10,6 +10,7 @@ import { HashiraDetailComponent } from './hashiras/hashira-detail/hashira-detail
 import { HashiraItemComponent } from './hashiras/hashira-list/hashira-item/hashira-item.component';
 import { FormListComponent } from './form-list/form-list.component';
 import { FormEditComponent } from './form-list/form-edit/form-edit.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormEditComponent } from './form-list/form-edit/form-edit.component';
     HashiraDetailComponent,
     HashiraItemComponent,
     FormListComponent,
-    FormEditComponent
+    FormEditComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

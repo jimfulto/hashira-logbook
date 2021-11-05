@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hashira } from '../hashira.model';
 
 @Component({
   selector: 'app-hashira-detail',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hashira-detail.component.css']
 })
 export class HashiraDetailComponent implements OnInit {
+  @Input() hashira: Hashira;
 
   constructor() { }
 
