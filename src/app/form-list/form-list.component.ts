@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from '../shared/form.model';
+import { Styles } from '../shared/form.model';
+import { FormListService } from './form-list.service';
 
 @Component({
   selector: 'app-form-list',
@@ -7,14 +8,18 @@ import { Form } from '../shared/form.model';
   styleUrls: ['./form-list.component.css']
 })
 export class FormListComponent implements OnInit {
-  forms:Form[] = [
-    new Form('Lateral waterwheel', 1),
-    new Form('Water dance', 2)
-  ];
+  forms:Styles[];
 
-  constructor() { }
+  constructor(private flService: FormListService) { }
 
   ngOnInit(): void {
+    this.forms = this.flService.getForms();
+    this.flService.formsChanged
+      .subscribe(
+        (forms: Styles[]) => {
+          this.forms = forms;
+        }
+      );
   }
 
 }

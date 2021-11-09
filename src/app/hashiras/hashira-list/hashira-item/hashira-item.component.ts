@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hashira } from '../../hashira.model';
+import { HashiraService } from '../../hashira.service';
 
 @Component({
   selector: 'app-hashira-item',
@@ -8,15 +9,14 @@ import { Hashira } from '../../hashira.model';
 })
 export class HashiraItemComponent implements OnInit {
   @Input() hashira: Hashira;
-  @Output() hashiraSelected = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private hashiraService: HashiraService) { }
 
   ngOnInit(): void {
   }
 
   onSelected() {
-    this.hashiraSelected.emit();
+    this.hashiraService.hashiraSelected.emit(this.hashira);
   }
 
 }

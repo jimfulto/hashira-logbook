@@ -11,6 +11,7 @@ import { HashiraItemComponent } from './hashiras/hashira-list/hashira-item/hashi
 import { FormListComponent } from './form-list/form-list.component';
 import { FormEditComponent } from './form-list/form-edit/form-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { FormListService } from './form-list/form-list.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [FormListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
