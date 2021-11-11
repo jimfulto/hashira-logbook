@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Hashira } from '../hashira.model';
 import { HashiraService } from '../hashira.service';
 
@@ -8,11 +9,19 @@ import { HashiraService } from '../hashira.service';
   styleUrls: ['./hashira-detail.component.css']
 })
 export class HashiraDetailComponent implements OnInit {
-  @Input() hashira: Hashira;
+  hashira: Hashira;
+  id: number;
 
-  constructor(private hashiraService: HashiraService) { }
+  constructor(private hashiraService: HashiraService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = +params['id'];
+          this.hashira = this.hashiraService.getHashira(this.id);
+        }
+      );
   }
 
   onAddToFormsList() {

@@ -35,6 +35,10 @@ export class HashiraService {
         return this.hashiras.slice();
     }
 
+    getHashira(index: number) {
+        return this.hashiras[index];
+    }
+
     addFormsToFormsList(styles: Styles[]) {
         this.flService.addForms(styles);
     }

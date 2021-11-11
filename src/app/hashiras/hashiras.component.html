@@ -3,9 +3,6 @@
         <app-hashira-list></app-hashira-list>
     </div>
     <div class="col-md-7">
-        <app-hashira-detail [hashira]="selectedHashira" *ngIf="selectedHashira; else infoText"></app-hashira-detail>
-        <ng-template #infoText>
-            <p>Please select a Hashira!</p>
-        </ng-template>
+      <router-outlet></router-outlet>
     </div>
 </div>
