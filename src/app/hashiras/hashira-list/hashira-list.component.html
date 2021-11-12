@@ -6,7 +6,7 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-hashira-item *ngFor="let hashiraEl of hashiras" [hashira]="hashiraEl"></app-hashira-item>
+        <app-hashira-item *ngFor="let hashiraEl of hashiras; let i = index" [hashira]="hashiraEl" [index]="i"></app-hashira-item>
     </div>
 </div>
 

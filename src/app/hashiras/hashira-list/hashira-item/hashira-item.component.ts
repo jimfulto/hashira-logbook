@@ -8,6 +8,7 @@ import { Hashira } from '../../hashira.model';
 })
 export class HashiraItemComponent implements OnInit {
   @Input() hashira: Hashira;
+  @Input() index: number;
 
   constructor() { }
 
