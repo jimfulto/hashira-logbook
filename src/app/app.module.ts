@@ -13,6 +13,7 @@ import { FormEditComponent } from './form-list/form-edit/form-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { FormListService } from './form-list/form-list.service';
 import { HashiraStartComponent } from './hashiras/hashira-start/hashira-start.component';
+import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HashiraStartComponent } from './hashiras/hashira-start/hashira-start.co
     FormListComponent,
     FormEditComponent,
     DropdownDirective,
-    HashiraStartComponent
+    HashiraStartComponent,
+    HashiraEditComponent
   ],
   imports: [
     BrowserModule,
