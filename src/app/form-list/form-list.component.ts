@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Styles } from '../shared/form.model';
 import { FormListService } from './form-list.service';
 
@@ -7,19 +8,24 @@ import { FormListService } from './form-list.service';
   templateUrl: './form-list.component.html',
   styleUrls: ['./form-list.component.css']
 })
-export class FormListComponent implements OnInit {
+export class FormListComponent implements OnInit, OnDestroy {
   forms:Styles[];
+  private foChangeSub: Subscription;
 
   constructor(private flService: FormListService) { }
 
   ngOnInit(): void {
     this.forms = this.flService.getForms();
-    this.flService.formsChanged
+    this.foChangeSub = this.flService.formsChanged
       .subscribe(
         (forms: Styles[]) => {
           this.forms = forms;
         }
       );
+  }
+
+  ngOnDestroy(): void {
+    this.foChangeSub.unsubscribe();
   }
 
 }

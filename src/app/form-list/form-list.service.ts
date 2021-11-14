@@ -1,9 +1,10 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Styles } from "../shared/form.model";
 
 @Injectable({ 'providedIn': 'root' })
 export class FormListService {
-    formsChanged = new EventEmitter<Styles[]>();
+    formsChanged = new Subject<Styles[]>();
 
     private forms:Styles[] = [
         new Styles('Lateral waterwheel', 1),
@@ -17,7 +18,7 @@ export class FormListService {
     addForm(form: Styles) {
         this.forms.push(form);
         //copy of array
-        this.formsChanged.emit(this.forms.slice());
+        this.formsChanged.next(this.forms.slice());
     }
 
     addForms(forms: Styles[]) {
@@ -25,6 +26,6 @@ export class FormListService {
         //   this.addIngredient(ingredient);
         // }
         this.forms.push(...forms);
-        this.formsChanged.emit(this.forms.slice());
+        this.formsChanged.next(this.forms.slice());
       }
 }

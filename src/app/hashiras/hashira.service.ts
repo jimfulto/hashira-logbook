@@ -1,11 +1,10 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { FormListService } from "../form-list/form-list.service";
 import { Styles } from "../shared/form.model";
 import { Hashira } from "./hashira.model";
 
 @Injectable({ providedIn: 'root' })
 export class HashiraService {
-    hashiraSelected = new EventEmitter<Hashira>();
 
     private hashiras: Hashira[] = [
         new Hashira(
