@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hashira } from '../hashira.model';
 import { HashiraService } from '../hashira.service';
 
@@ -11,10 +12,14 @@ export class HashiraListComponent implements OnInit {
   
   hashiras: Hashira[];
 
-  constructor(private hashiraService: HashiraService) { }
+  constructor(private hashiraService: HashiraService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.hashiras = this.hashiraService.getHashiras();
+  }
+
+  onNewHashira() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }
