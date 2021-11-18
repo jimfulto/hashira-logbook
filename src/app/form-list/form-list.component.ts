@@ -24,6 +24,10 @@ export class FormListComponent implements OnInit, OnDestroy {
       );
   }
 
+  onEditItem(index: number) {
+    this.flService.startedEditing.next(index);
+  }
+
   ngOnDestroy(): void {
     this.foChangeSub.unsubscribe();
   }

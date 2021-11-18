@@ -5,9 +5,9 @@
         <ul class="list-group">
             <a 
                 class="list-group-item" 
-                href="#" 
                 style="cursor: pointer;"
-                *ngFor="let form of forms">
+                *ngFor="let form of forms; let i = index"
+                (click)="onEditItem(i)">
                 {{ form.name }} ({{ form.amount }})</a>
         </ul>
     </div>

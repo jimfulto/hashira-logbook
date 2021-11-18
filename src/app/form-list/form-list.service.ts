@@ -5,6 +5,7 @@ import { Styles } from "../shared/form.model";
 @Injectable({ 'providedIn': 'root' })
 export class FormListService {
     formsChanged = new Subject<Styles[]>();
+    startedEditing = new Subject<number>();
 
     private forms:Styles[] = [
         new Styles('Lateral waterwheel', 1),
@@ -13,6 +14,10 @@ export class FormListService {
 
     getForms() {
         return this.forms.slice();
+    }
+
+    getForm(index: number) {
+        return this.forms[index];
     }
 
     addForm(form: Styles) {

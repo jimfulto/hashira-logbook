@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Styles } from 'src/app/shared/form.model';
 import { FormListService } from '../form-list.service';
 
@@ -7,20 +9,38 @@ import { FormListService } from '../form-list.service';
   templateUrl: './form-edit.component.html',
   styleUrls: ['./form-edit.component.css']
 })
-export class FormEditComponent implements OnInit {
-  @ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
-  @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
+export class FormEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f') flForm: NgForm;
+  subscription: Subscription;
+  editMode = false;
+  editedItemIndex: number;
+  editedItem: Styles;
 
   constructor(private flService: FormListService) { }
 
   ngOnInit(): void {
+    this.flService.startedEditing
+      .subscribe(
+        (index: number) => {
+          this.editedItemIndex = index;
+          this.editMode = true;
+          this.editedItem = this.flService.getForm(index);
+          this.flForm.setValue({
+            name: this.editedItem.name,
+            amount: this.editedItem.amount
+          })
+        }
+      );
   }
 
-  onAddItem() {
-    const formName = this.nameInputRef.nativeElement.value;
-    const formAmount = this.amountInputRef.nativeElement.value;
-    const newForm = new Styles(formName, formAmount);
+  onAddItem(form: NgForm) {
+    const value = form.value;
+    const newForm = new Styles(value.name, value.amount);
     this.flService.addForm(newForm);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
