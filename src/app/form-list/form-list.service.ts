@@ -33,4 +33,9 @@ export class FormListService {
         this.forms.push(...forms);
         this.formsChanged.next(this.forms.slice());
       }
+
+    updateForm(index: number, newForm: Styles) {
+        this.forms[index] = newForm;
+        this.formsChanged.next(this.forms.slice());
+    }
 }

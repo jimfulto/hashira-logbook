@@ -33,10 +33,16 @@ export class FormEditComponent implements OnInit, OnDestroy {
       );
   }
 
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     const value = form.value;
     const newForm = new Styles(value.name, value.amount);
-    this.flService.addForm(newForm);
+    if(this.editMode) {
+      this.flService.updateForm(this.editedItemIndex, newForm);
+    } else {
+      this.flService.addForm(newForm);
+    }
+    this.editMode = false;
+    form.reset();
   }
 
   ngOnDestroy() {
