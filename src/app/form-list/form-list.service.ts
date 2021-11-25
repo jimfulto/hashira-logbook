@@ -38,4 +38,9 @@ export class FormListService {
         this.forms[index] = newForm;
         this.formsChanged.next(this.forms.slice());
     }
+
+    deleteForm(index: number) {
+        this.forms.splice(index, 1);
+        this.formsChanged.next(this.forms.slice());
+    }
 }

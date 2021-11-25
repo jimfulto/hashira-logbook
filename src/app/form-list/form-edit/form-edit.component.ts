@@ -9,7 +9,7 @@ import { FormListService } from '../form-list.service';
   templateUrl: './form-edit.component.html',
   styleUrls: ['./form-edit.component.css']
 })
-export class FormEditComponent implements OnInit, OnDestroy {
+export class FormEditComponent implements OnInit {
   @ViewChild('f') flForm: NgForm;
   subscription: Subscription;
   editMode = false;
@@ -45,8 +45,18 @@ export class FormEditComponent implements OnInit, OnDestroy {
     form.reset();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  onClear() {
+    this.flForm.reset();
+    this.editMode = false;
   }
+
+  onDelete() {
+    this.flService.deleteForm(this.editedItemIndex);
+    this.onClear();
+  }
+
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
 }
