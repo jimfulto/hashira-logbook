@@ -14,7 +14,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { FormListService } from './form-list/form-list.service';
 import { HashiraStartComponent } from './hashiras/hashira-start/hashira-start.component';
 import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [FormListService],
   bootstrap: [AppComponent]
