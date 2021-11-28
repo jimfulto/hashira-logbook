@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { FormListService } from "../form-list/form-list.service";
 import { Styles } from "../shared/form.model";
 import { Hashira } from "./hashira.model";
 
 @Injectable({ providedIn: 'root' })
 export class HashiraService {
+    hashirasChanged = new Subject<Hashira[]>();
 
     private hashiras: Hashira[] = [
         new Hashira(
@@ -40,5 +42,15 @@ export class HashiraService {
 
     addFormsToFormsList(styles: Styles[]) {
         this.flService.addForms(styles);
+    }
+
+    addHashira(hashira: Hashira) {
+        this.hashiras.push(hashira);
+        this.hashirasChanged.next(this.hashiras.slice());
+    }
+
+    updateHashira(index: number, newHashira: Hashira) {
+        this.hashiras[index] = newHashira;
+        this.hashirasChanged.next(this.hashiras.slice());
     }
 }

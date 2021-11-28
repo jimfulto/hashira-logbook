@@ -15,6 +15,12 @@ export class HashiraListComponent implements OnInit {
   constructor(private hashiraService: HashiraService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.hashiraService.hashirasChanged
+      .subscribe(
+        (hashiras: Hashira[]) => {
+          this.hashiras = hashiras;
+        }
+      );
     this.hashiras = this.hashiraService.getHashiras();
   }
 
