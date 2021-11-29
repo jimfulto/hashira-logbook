@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Hashira } from '../hashira.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HashiraService } from '../hashira.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class HashiraEditComponent implements OnInit {
   editMode = false;
   hashiraForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private hashiraService: HashiraService) { }
+  constructor(private route: ActivatedRoute, private hashiraService: HashiraService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params
@@ -39,6 +38,7 @@ export class HashiraEditComponent implements OnInit {
     } else {
       this.hashiraService.addHashira(this.hashiraForm.value);
     }
+    this.onCancel();
   }
 
   onAddStyle() {
@@ -52,6 +52,14 @@ export class HashiraEditComponent implements OnInit {
 
   get controls() { // a getter!
     return (<FormArray>this.hashiraForm.get('styles')).controls;
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  onDeleteStyle(index: number) {
+    (<FormArray>this.hashiraForm.get('styles')).removeAt(index);
   }
 
   private initForm() {

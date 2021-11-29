@@ -53,4 +53,9 @@ export class HashiraService {
         this.hashiras[index] = newHashira;
         this.hashirasChanged.next(this.hashiras.slice());
     }
+
+    deleteHashira(index: number) {
+        this.hashiras.splice(index, 1);
+        this.hashirasChanged.next(this.hashiras.slice());
+    }
 }

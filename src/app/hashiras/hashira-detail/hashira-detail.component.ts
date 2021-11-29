@@ -33,4 +33,9 @@ export class HashiraDetailComponent implements OnInit {
     //this.router.navigate(['../', this.id, 'edit'], { relativeTo: this.route })
   }
 
+  onDeleteHashira() {
+    this.hashiraService.deleteHashira(this.id);
+    this.router.navigate(['/hashiras']);
+  }
+
 }
