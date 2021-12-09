@@ -15,6 +15,7 @@ import { FormListService } from './form-list/form-list.service';
 import { HashiraStartComponent } from './hashiras/hashira-start/hashira-start.component';
 import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [FormListService],
   bootstrap: [AppComponent]
