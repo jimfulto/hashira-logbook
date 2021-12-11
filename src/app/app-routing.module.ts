@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 import { FormListComponent } from './form-list/form-list.component';
 import { HashiraDetailComponent } from './hashiras/hashira-detail/hashira-detail.component';
 import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
@@ -15,8 +16,8 @@ const approutes: Routes = [
     { path: ':id', component: HashiraDetailComponent, resolve: [HashirasResolverService]},
     { path: ':id/edit', component: HashiraEditComponent, resolve: [HashirasResolverService]}
   ] },
-  { path: 'form-list', component: FormListComponent }
-  
+  { path: 'form-list', component: FormListComponent },
+  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

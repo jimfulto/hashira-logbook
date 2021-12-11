@@ -16,6 +16,8 @@ import { HashiraStartComponent } from './hashiras/hashira-start/hashira-start.co
 import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormEditComponent,
     DropdownDirective,
     HashiraStartComponent,
-    HashiraEditComponent
+    HashiraEditComponent,
+    AuthComponent,
+    LoadingSpinner
   ],
   imports: [
     BrowserModule,
