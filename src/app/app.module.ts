@@ -15,9 +15,10 @@ import { FormListService } from './form-list/form-list.service';
 import { HashiraStartComponent } from './hashiras/hashira-start/hashira-start.component';
 import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { LoadingSpinner } from './shared/loading-spinner/loading-spinner.compone
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [FormListService],
+  providers: [FormListService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

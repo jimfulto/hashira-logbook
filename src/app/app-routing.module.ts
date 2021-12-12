@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 import { FormListComponent } from './form-list/form-list.component';
 import { HashiraDetailComponent } from './hashiras/hashira-detail/hashira-detail.component';
 import { HashiraEditComponent } from './hashiras/hashira-edit/hashira-edit.component';
@@ -10,7 +11,11 @@ import { HashirasComponent } from './hashiras/hashiras.component';
 
 const approutes: Routes = [
   { path: '', redirectTo: '/hashiras', pathMatch: 'full' },
-  { path: 'hashiras', component: HashirasComponent, children: [
+  { 
+    path: 'hashiras', 
+    component: HashirasComponent, 
+    canActivate: [AuthGuard], 
+    children: [
     { path: '', component: HashiraStartComponent },
     { path: 'new', component: HashiraEditComponent},
     { path: ':id', component: HashiraDetailComponent, resolve: [HashirasResolverService]},
