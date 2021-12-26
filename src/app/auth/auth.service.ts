@@ -35,7 +35,7 @@ export class AuthService {
                 //after user model and handle Authentication
                 this.handleAuthentication(
                     resData.email, 
-                    resData.localId, 
+                    resData.localId,
                     resData.idToken, 
                     +resData.expiresIn
                 );
